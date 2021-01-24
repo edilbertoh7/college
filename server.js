@@ -1,10 +1,16 @@
 const dotenv = require('dotenv');
 const express = require('express');
 const morgan = require('morgan');
+const connectDatabase = require('./config/db'); //se llama al archivo de conexion
+
+
+dotenv.config({ path: './config/config.env' });
+
+connectDatabase();
+
 
 const libro = require('./rutas/libro');
 
-dotenv.config({ path: './config/config.env' });
 
 const app = express();
 
@@ -13,10 +19,21 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 
-app.use('/api/libro', libro);
+app.use('/api/libro', libro); //el parametro libro es la ruta 
 
 
 
 const PORT = process.env.PORT || 5000;
+// funcion app.listen para levantar el servidor
+const server = app.listen(
+    PORT,
+    console.log('servidor se ejecuta en ambiente', process.env.NODE_ENV)
+);
+// funcion para atrapar los errores que se puwdan presentar al momento de la conexion
+process.on('unhandledRejection', (err, Promise) => {
+    console.log('errores', err.message);
 
-app.listen(PORT, console.log('servidor se ejecuta en ambiente', process.env.NODE_ENV));
+    server.close(() => {
+        process.exit(1);
+    })
+});
