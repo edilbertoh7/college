@@ -8,19 +8,21 @@ dotenv.config({ path: './config/config.env' });
 
 connectDatabase();
 
-
 const libro = require('./rutas/libro');
+const autor = require('./rutas/autor');
 
 
 const app = express();
+app.use(express.json());
+/*esta linea permique que express 
+procese la data de tipo  el json que vienen en el response*/
 
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
-
+app.use('/api/libreriaAutor', autor);
 app.use('/api/libro', libro); //el parametro libro es la ruta 
-
 
 
 const PORT = process.env.PORT || 5000;
