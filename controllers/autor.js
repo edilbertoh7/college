@@ -48,12 +48,38 @@ exports.getAutorbyId = async(req, res, next) => {
 
     try {
         const autor = await Autor.findById(req.params.id);
-
+        if (!autor) {
+            return res.status(400).json({ status: 400, mensaje: 'no se enecontro un autor registrado con ese id' });
+        }
         res.status(200).json(autor);
+    } catch (err) {
+        res.status(400).json({ status: 400, mensaje: err })
+    }
+};
+// actualizacion de autor
+exports.updateAutor = async(req, res, next) => {
+
+    try {
+        const autor = await Autor.findByIdAndUpdate(req.params.id, req.body);
+        if (!autor) {
+            return res.status(400).json({ status: 400, mensaje: 'no se enecontro un autor registrado con ese id' });
+        }
+        res.status(200).json({ status: 200, data: autor, mensaje: 'se ha actualizado correctamente el autor' });
 
     } catch (err) {
         res.status(400).json({ status: 400, mensaje: err })
     }
+};
+// eliminacion de autor
+exports.deleteaAutor = async(req, res, next) => {
 
-
+    try {
+        const autor = await Autor.findByIdAndDelete(req.params.id);
+        if (!autor) {
+            return res.status(400).json({ status: 400, mensaje: 'el autor no existe' });
+        }
+        res.status(200).json({ status: 200 });
+    } catch (err) {
+        res.status(400).json({ status: 400, mensaje: err })
+    }
 };

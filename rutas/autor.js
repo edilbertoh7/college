@@ -2,7 +2,8 @@ const { Router } = require('express');
 const express = require('express');
 const ruta = express.Router();
 
-const { crearAutor, getAutor, getAutorbyId } = require('../controllers/autor');
+const { crearAutor, getAutor, getAutorbyId, updateAutor, deleteaAutor } = require('../controllers/autor');
+//const { put } = require('./libro');
 
 ruta
     .route('/')
@@ -12,6 +13,8 @@ ruta
 ruta
     .route('/:id')
     .get(getAutorbyId)
+    .put(updateAutor)
+    .delete(deleteaAutor)
 
 
 

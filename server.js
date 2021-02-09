@@ -14,6 +14,7 @@ const app = express();
 app.use(express.json());
 /*esta linea permique que express 
 procese la data de tipo  el json que vienen en el response*/
+
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
