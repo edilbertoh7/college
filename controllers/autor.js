@@ -53,7 +53,8 @@ exports.getAutorbyId = async(req, res, next) => {
         }
         res.status(200).json(autor);
     } catch (err) {
-        res.status(400).json({ status: 400, mensaje: err })
+        next(err);
+        //res.status(400).json({ status: 400, mensaje: err })
     }
 };
 // actualizacion de autor
