@@ -1,7 +1,7 @@
 {
     "name": "backendnode",
     "version": "1.0.0",
-    "description": "es un proyecto de administracionde libreria",
+    "description": "es un proyecto crud de colegio",
     "main": "server.js",
     "scripts": {
         "start": "SET NODE_ENV=production & node server",
