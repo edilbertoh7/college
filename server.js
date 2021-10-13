@@ -7,9 +7,9 @@ const connectDatabase = require('./config/db'); //se llama al archivo de conexio
 dotenv.config({ path: './config/config.env' });
 connectDatabase();
 
-const libro = require('./rutas/libro');
+const alumno = require('./rutas/alumno');
 
-const autor = require('./rutas/autor');
+const profesor = require('./rutas/profesor');
 
 const app = express();
 app.use(express.json());
@@ -19,8 +19,8 @@ if (process.env.NODE_ENV === 'development') {
     app.use(morgan('dev'));
 }
 
-app.use('/api/libreriaAutor', autor);
-app.use('/api/libro', libro); //el parametro libro es la ruta 
+app.use('/api/profesores', profesor);
+app.use('/api/alumnos', alumno); //el parametro alumno es la ruta 
 
 app.use(errorHandler);
 
