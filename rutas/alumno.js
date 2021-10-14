@@ -8,7 +8,7 @@ const {
   getAlumnobyId,
   updateAlumno,
   deleteaAlumno,
-} = require("../controllers/Alumno");
+} = require("../controllers/alumno");
 //const { put } = require('./libro');
 
 ruta.route("/").post(crearAlumno).get(getAlumno);
