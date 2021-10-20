@@ -36,6 +36,6 @@ process.on('unhandledRejection', (err, Promise) => {
     console.log('errores', err.message);
 
     server.close(() => {
-        process.exit(1);
+        process.exit();
     })
 });
